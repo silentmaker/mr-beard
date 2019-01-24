@@ -1,47 +1,67 @@
 import React, { Component } from 'react';
 import './Recorder.css';
+import hatOne from '../assets/images/hats/hat-3.png';
+
+const hatImage = new Image();
+hatImage.src = hatOne;
 
 class Recorder extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isOpen: false,
+      isInfo: false,
       isSupported: false,
-      mediaStream: null,
-      faceDetector: new window.FaceDetector(),
     };
   }
 
+  componentDidMount() {
+    this.mediaStream = null;
+    this.faceDetector = window.FaceDetector ? new window.FaceDetector() : null;
+    this.video = this.refs.cameraVideo;
+    this.canvas = this.refs.cameraCanvas;
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
+    this.ctx = this.canvas.getContext('2d');
+    this.setState({ isSupported: this.faceDetector });
+  }
+
   openCamera() {
-    const { devicePixelRatio, innerWidth, innerHeight } = window;
+    const { innerWidth, innerHeight } = window;
     const constraints = {
       audio: false,
       video: {
         facingMode: 'user',
-        width: innerHeight * devicePixelRatio,
-        height: innerWidth * devicePixelRatio,
+        width: innerWidth,
+        height: innerHeight,
       },
     };
     const camera = window.navigator.mediaDevices.getUserMedia(constraints);
     camera.then((mediaStream) => {
-      this.refs.cameraVideo.srcObject = mediaStream;
-      this.setState({ isOpen: true, mediaStream });
-      requestAnimationFrame(() => this.detectFace());
+      const { video } = this;
+      video.onloadedmetadata = () => {
+        video.play();
+        requestAnimationFrame(() => this.detectFace());
+      };
+      video.srcObject = mediaStream;
+      this.setState({ isOpen: true });
+      this.mediaStream = mediaStream;
     }).catch((err) => {
       console.log(`${err.name}: ${err.message}`);
     });
   }
 
   detectFace() {
-    this.state.faceDetector.detect(this.refs.cameraVideo).then((faces) => {
-      const canvas = this.refs.cameraCanvas;
-      const context = canvas.getContext('2d');
-      context.clearRect(0, 0, canvas.width, canvas.height);
+    if (!this.faceDetector) return;
+    this.faceDetector.detect(this.refs.cameraVideo).then((faces) => {
+      const { canvas, ctx } = this;
+      console.log(this.ctx);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       faces.forEach(face => {
-        console.log(face);
         const { width, height, top, left } = face.boundingBox;
-        context.fillStyle = "green";
-        context.fillRect(top, left, width, height);
+        const size = width * 0.4;
+        // ctx.strokeRect(left, top, width, height);
+        ctx.drawImage(hatImage, left + width / 2 - size / 2, top - size - height / 4, size, size);
       });
       if (this.state.isOpen) requestAnimationFrame(() => this.detectFace());
     }).catch((err) => {
@@ -50,18 +70,18 @@ class Recorder extends Component {
   }
 
   closeCamera() {
-    if (this.state.mediaStream) {
-      this.state.mediaStream.getTracks().forEach(track => track.stop());
+    if (this.mediaStream) {
+      this.mediaStream.getTracks().forEach(track => track.stop());
       this.setState({ isOpen: false });
     }
   }
 
   toggleInfo() {
-    this.setState({ isSupported: !this.state.isSupported });
+    this.setState({ isInfo: !this.state.isInfo });
   }
 
   render() {
-    const { isOpen, isSupported, faceDetector } = this.state;
+    const { isOpen, isInfo, isSupported } = this.state;
     return (
       <div className="recorder-container">
         <video className={`camera-video ${isOpen ? 'active' : ''}`} ref="cameraVideo" autoPlay></video>
@@ -70,8 +90,8 @@ class Recorder extends Component {
           <div className="icon-close" onClick={() => this.closeCamera()}></div> :
           <div className="icon-open" onClick={() => this.openCamera()}></div>
         }
-        {faceDetector ? '' :
-          <div className={`feature-info ${isSupported ? 'active' : ''}`} onClick={() => this.toggleInfo()}>
+        {isSupported ? '' :
+          <div className={`feature-info ${isInfo ? 'active' : ''}`} onClick={() => this.toggleInfo()}>
             <div>Enable FaceDetector</div>
             <div>Please Copy and Visit The URL Below:</div>
             <div><code>chrome://flags/#enable-experimental-web-platform-features</code></div>

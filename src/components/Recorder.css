@@ -1,0 +1,67 @@
+.recorder-container {
+  position: relative;
+}
+
+.camera-video,
+.camera-canvas {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.camera-canvas.active,
+.camera-video.active {
+  display: block;
+}
+
+.icon-open {
+  position: fixed;
+  width: 100px;
+  height: 100px;
+  background-image: url(../assets/images/camera-shutter.png);
+  background-size: 100px;
+  left: 50%;
+  top: 160px;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.icon-close {
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  background-image: url(../assets/images/stop-record.png);
+  background-size: 36px;
+  top: 40px;
+  right: 20px;
+  z-index: 1;
+}
+
+.feature-info {
+  position: fixed;
+  max-height: 20px;
+  top: 0;
+  left: 0;
+  background-color: #F7F2A3;
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 20px;
+  color: #0185BD;
+  transition: max-height .3s ease-out;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.feature-info.active {
+  max-height: 100px;
+}
+
+.feature-info code {
+  font-style: italic;
+  color: #45484C;
+}

@@ -1,8 +1,8 @@
 {
-  "name": "mr-hat",
+  "name": "mr-beard",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://silentmaker.github.io/mr-hat",
+  "homepage": "https://silentmaker.github.io/mr-beard",
   "dependencies": {
     "babylonjs": "^3.3.0",
     "react": "^16.7.0",

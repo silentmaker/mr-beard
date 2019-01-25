@@ -42,6 +42,17 @@
   z-index: 1;
 }
 
+.icon-capture {
+  position: fixed;
+  width: 40px;
+  height: 30px;
+  background-image: url(../assets/images/camera-capture.png);
+  background-size: 40px;
+  top: 46px;
+  left: 20px;
+  z-index: 1;
+}
+
 .feature-info {
   position: fixed;
   max-height: 20px;
@@ -64,4 +75,24 @@
 .feature-info code {
   font-style: italic;
   color: #45484C;
+}
+
+.save-btn {
+  position: fixed;
+  width: 40px;
+  bottom: 60px;
+  right: 20px;
+  z-index: 1;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .5s ease;
+}
+
+.save-btn.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.save-btn.active img {
+  width: 100px;
 }

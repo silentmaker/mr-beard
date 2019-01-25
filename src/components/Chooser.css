@@ -21,21 +21,28 @@
   text-align: center;
 }
 
-.hat-list {
+.deco-list {
   display: flex;
   list-style: none;
   flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 10px;
 }
 
-.hat-item {
+.deco-item {
   display: flex;
-  flex: 0 0 20%;
+  flex: 0 0 75px;
+  height: 40px;
+  margin: 10px 0 20px;
   justify-content: center;
   align-items: center;
+  background-image: url(../assets/images/sprite-beards.png);
+  background-repeat: no-repeat;
+  background-size: 150px;
 }
 
-.hat-item img {
-  display: block;
-  width: auto;
-  height: 40px;
+.deco-item.current {
+  border-radius: 4px;
+  background-color: #dcdcdc;
+  transition: background-color .3s ease;
 }

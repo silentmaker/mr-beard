@@ -5,11 +5,18 @@ import Chooser from './Chooser';
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      beard: { x: 0, y: 0 },
+    };
+  }
+
   render() {
     return (
       <div className="App">
-        <Recorder />
-        <Chooser />
+        <Recorder beard={this.state.beard} />
+        <Chooser onChange={(beard) => this.setState({ beard })} />
       </div>
     );
   }

@@ -2,8 +2,10 @@
   position: relative;
 }
 
-.camera-canvas,
 .camera-video {
+  display: none;
+}
+.camera-canvas {
   display: none;
   position: fixed;
   top: 0;

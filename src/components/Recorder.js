@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './Recorder.css';
-import hatOne from '../assets/images/hats/hat-3.png';
+import beardSprite from '../assets/images/sprite-beards.png';
 
-const hatImage = new Image();
-hatImage.src = hatOne;
+const beardImage = new Image();
+beardImage.src = beardSprite;
 
 class Recorder extends Component {
   constructor(props) {
@@ -27,15 +27,7 @@ class Recorder extends Component {
   }
 
   openCamera() {
-    const { innerWidth, innerHeight } = window;
-    const constraints = {
-      audio: false,
-      video: {
-        facingMode: 'user',
-        width: innerWidth,
-        height: innerHeight,
-      },
-    };
+    const constraints = { audio: false, video: { facingMode: 'user' } };
     const camera = window.navigator.mediaDevices.getUserMedia(constraints);
     camera.then((mediaStream) => {
       const { video } = this;
@@ -55,13 +47,16 @@ class Recorder extends Component {
     if (!this.faceDetector) return;
     this.faceDetector.detect(this.refs.cameraVideo).then((faces) => {
       const { canvas, ctx } = this;
-      console.log(this.ctx);
+      const { beard } = this.props;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       faces.forEach(face => {
-        const { width, height, top, left } = face.boundingBox;
-        const size = width * 0.4;
-        // ctx.strokeRect(left, top, width, height);
-        ctx.drawImage(hatImage, left + width / 2 - size / 2, top - size - height / 4, size, size);
+        const { height } = face.boundingBox;
+        face.landmarks.forEach((landmark) => {
+          if (landmark.type === 'mouth') {
+            const { x, y } = landmark.locations[0];
+            ctx.drawImage(beardImage, -beard.x * 2, -beard.y * 2, 150, 80, x - 75, y - height / 200 * 80, 150, 80);
+          }
+        });
       });
       if (this.state.isOpen) requestAnimationFrame(() => this.detectFace());
     }).catch((err) => {

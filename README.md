@@ -1,3 +1,3 @@
-## MR.Hat
+## MR.Beard
 
-[Demo](https://silentmaker.github.io/mr-hat)
+[Demo](https://silentmaker.github.io/mr-beard)

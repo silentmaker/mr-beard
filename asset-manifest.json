@@ -1,15 +1,15 @@
 {
-  "main.css": "/mr-hat/static/css/main.a85abca0.chunk.css",
-  "main.js": "/mr-hat/static/js/main.46ac0d8a.chunk.js",
-  "main.js.map": "/mr-hat/static/js/main.46ac0d8a.chunk.js.map",
-  "static/js/1.f03e8ae8.chunk.js": "/mr-hat/static/js/1.f03e8ae8.chunk.js",
-  "static/js/1.f03e8ae8.chunk.js.map": "/mr-hat/static/js/1.f03e8ae8.chunk.js.map",
-  "runtime~main.js": "/mr-hat/static/js/runtime~main.862297c8.js",
-  "runtime~main.js.map": "/mr-hat/static/js/runtime~main.862297c8.js.map",
-  "static/media/Chooser.css": "/mr-hat/static/media/sprite-beards.bc1de142.png",
-  "static/media/Recorder.css": "/mr-hat/static/media/camera-shutter.615f825b.png",
-  "static/css/main.a85abca0.chunk.css.map": "/mr-hat/static/css/main.a85abca0.chunk.css.map",
-  "index.html": "/mr-hat/index.html",
-  "precache-manifest.8997dce29314c8539d60afb2d49be39d.js": "/mr-hat/precache-manifest.8997dce29314c8539d60afb2d49be39d.js",
-  "service-worker.js": "/mr-hat/service-worker.js"
+  "main.css": "/mr-beard/static/css/main.3fbdc24b.chunk.css",
+  "main.js": "/mr-beard/static/js/main.806db36c.chunk.js",
+  "main.js.map": "/mr-beard/static/js/main.806db36c.chunk.js.map",
+  "static/js/1.f03e8ae8.chunk.js": "/mr-beard/static/js/1.f03e8ae8.chunk.js",
+  "static/js/1.f03e8ae8.chunk.js.map": "/mr-beard/static/js/1.f03e8ae8.chunk.js.map",
+  "runtime~main.js": "/mr-beard/static/js/runtime~main.119c66f3.js",
+  "runtime~main.js.map": "/mr-beard/static/js/runtime~main.119c66f3.js.map",
+  "static/media/Chooser.css": "/mr-beard/static/media/sprite-beards.bc1de142.png",
+  "static/media/Recorder.css": "/mr-beard/static/media/camera-shutter.615f825b.png",
+  "static/css/main.3fbdc24b.chunk.css.map": "/mr-beard/static/css/main.3fbdc24b.chunk.css.map",
+  "index.html": "/mr-beard/index.html",
+  "precache-manifest.840aea9171b43c9802a653cea1c1302b.js": "/mr-beard/precache-manifest.840aea9171b43c9802a653cea1c1302b.js",
+  "service-worker.js": "/mr-beard/service-worker.js"
 }
